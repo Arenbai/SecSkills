@@ -11,6 +11,9 @@ A comprehensive penetration testing skill pack designed for **Claude Code**. Cov
 ### Installation
 
 ```bash
+# Clone into the current directory
+git clone https://github.com/Arenbai/SecSkills.git .
+
 # Clone into Claude Code skills directory
 git clone https://github.com/Arenbai/SecSkills.git ~/.claude/skills/secskills
 
