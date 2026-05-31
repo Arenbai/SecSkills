@@ -11,10 +11,13 @@
 ### 安装
 
 ```bash
+# 克隆到当前目录
+git clone https://github.com/Arenbai/SecSkills.git .
+
 # 克隆到 Claude Code skills 目录
 git clone https://github.com/Arenbai/SecSkills.git ~/.claude/skills/secskills
 
-# 或者放到项目本地 .claude/skills/ 下
+# 或者放到项目本地 .claude/skills/ 
 git clone https://github.com/Arenbai/SecSkills.git .claude/skills/secskills
 ```
 
