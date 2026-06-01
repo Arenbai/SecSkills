@@ -7,6 +7,9 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
 > A professional penetration testing skill pack built for **Claude Code**. Covers the full kill chain: Recon → Vulnerability Discovery → Exploitation → Post-Exploitation → Evasion. Tell Claude your target, get an interactive arrow-key panel, and start hacking — all within your terminal.
+>
+> 💡 The CLAUDE.md in the repository is a standalone prompt file. If you don't want to install the Skill, you can directly use it as needed — feel free to take it.
+
 
 ## ⭐ Support the Project
 
