@@ -7,6 +7,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
 > 专为 **Claude Code** 打造的专业渗透测试技能包。覆盖信息收集 → 漏洞发现 → 漏洞利用 → 后渗透 → 免杀全流程。对 Claude 说出目标，自动弹出方向键交互面板，即刻开始实战测试。
+> 
 > 💡 仓库里的 `CLAUDE.md` 是独立提示词文件，不想装 Skill 的话可以直接拿去用，按需自取。
 
 ## ⭐ 支持项目
