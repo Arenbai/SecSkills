@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-orange)](https://claude.ai/code)
-[![Version](https://img.shields.io/badge/version-1.3-green.svg)]()
+[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)]()
 [![Stars](https://img.shields.io/badge/⭐_Star-支持本项目-yellow)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
@@ -38,6 +38,8 @@ git clone https://github.com/Arenbai/SecSkills.git .claude/skills/secskills
 ```
 
 Claude 会弹出 **↑↓ 方向键选择面板**，确认授权级别、测试深度、范围后自动开始。
+
+> 💡 **提示词自取**：仓库根目录的 `CLAUDE.md` 是独立的标准提示词文件，不想装 Skill 的话可以直接复制到 `~/.claude/CLAUDE.md`，Claude Code 启动时自动加载，一样拥有完整的渗透测试能力。
 
 ---
 
@@ -76,11 +78,11 @@ SecSkills/
 | SSRF | 内网探测/云元数据/Gopher协议/DNS重绑定/编码绕过 |
 | 文件上传 | 后缀绕过/内容绕过/条件竞争/云存储利用 |
 | 文件包含 | LFI/RFI/伪协议/日志投毒/Session包含 |
-| **🆕 目录遍历** | **路径穿越/目录列表泄露/编码绕过/敏感文件读取** |
+| 目录遍历 | 路径穿越/目录列表泄露/编码绕过/敏感文件读取 |
 | XXE | 文件读取/Blind OOB/XInclude/SSRF组合 |
 | 反序列化 | PHP/Java/Python/.NET/Node.js |
 | 越权/逻辑 | IDOR/支付篡改/竞争条件/验证码缺陷 |
-| **🆕 竞争条件** | **并发绕过/TOCTOU/秒杀/优惠券/库存竞争** |
+| 竞争条件 | 并发绕过/TOCTOU/秒杀/优惠券/库存竞争 |
 | SSTI | Jinja2/FreeMarker/Velocity/Smarty/Twig/ERB |
 | HTTP 请求走私 | CL.TE/TE.CL/H2降级 |
 | Host 头注入 | 密码重置投毒/缓存投毒/内网扫描 |
@@ -124,35 +126,6 @@ Claude: ✅ 开始标准渗透测试 →
         Step 3: 漏洞利用（构建利用链 A→B→C）
         Step 4: 后渗透（按需触发）
 ```
-
----
-
-## 📝 更新日志
-
-### v1.3 (2026-06-01)
-
-**🆕 新增 2 个专项模块：**
-
-| 新增模块 | 文件 | 核心内容 |
-|---------|------|---------|
-| 竞争条件/并发 | `web-race-condition.md` | TOCTOU原理、Turbo Intruder并发脚本、点赞/收藏刷票、优惠券重复领取、余额竞争、秒杀超卖、文件上传竞态、多步流程绕过、验证码并发爆破、asyncio高并发模板 |
-| 目录遍历 | `web-dir-traversal.md` | 目录列表泄露(Apache/Nginx/IIS)、路径穿越检测、编码绕过(URL/Unicode/UTF-8)、后缀限制绕过、CVE-2021-41773/42013、IIS分号截断、自动化检测脚本 |
-
-**🔧 增强 4 个已有模块：**
-
-| 增强模块 | 新增内容 |
-|---------|---------|
-| CORS | 子域名XSS链式利用、CORS+CSRF组合、WebSocket CORS绕过、预检请求绕过、自动化检测脚本 |
-| 缓存投毒 | Varnish/Cloudflare/Fastly CDN投毒、Fat GET投毒、缓存键归一化攻击、未键化Cookie投毒 |
-| Host 头注入 | Django/Flask/Laravel框架投毒、多域名探测、Host头+SSRF内网扫描增强 |
-| CRLF 注入 | CRLF→XSS→Cookie窃取完整链、Header反射链、CRLF+SSRF组合 |
-
-**📊 数据：** Web漏洞 17→19 类 | 专项文件 34→36 个
-
-### v1.2 (2025-05-31)
-- 首次发布，覆盖 17 类 Web 漏洞 + 后渗透 + 免杀
-- 34 个专项 reference 文件
-- AskUserQuestion 方向键交互选择面板
 
 ---
 

@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-orange)](https://claude.ai/code)
-[![Version](https://img.shields.io/badge/version-1.3-green.svg)]()
+[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)]()
 [![Stars](https://img.shields.io/badge/⭐_Star-Support_This_Project-yellow)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 
@@ -38,6 +38,8 @@ Penetration test https://target.com
 ```
 
 Claude presents an **arrow-key selection panel** (↑↓ to navigate, Enter to confirm) for authorization level, test depth, and scope — then automatically executes the full pentest workflow.
+
+> 💡 **Standalone Prompt**: The `CLAUDE.md` file in the repo root is a self-contained prompt. If you don't want to install the full Skill, just copy it to `~/.claude/CLAUDE.md` and Claude Code will load it automatically — you still get the full pentest capability.
 
 ---
 
@@ -76,11 +78,11 @@ SecSkills/
 | SSRF | Internal probing/Cloud metadata/Gopher/DNS rebinding |
 | File Upload | Extension bypass/Content bypass/Race condition/Cloud exploitation |
 | File Inclusion | LFI/RFI/PHP wrappers/Log poisoning/Session inclusion |
-| **🆕 Directory Traversal** | **Path traversal/Directory listing/Encoding bypass/Sensitive file read** |
+| Directory Traversal | Path traversal/Directory listing/Encoding bypass/Sensitive file read |
 | XXE | File read/Blind OOB/XInclude/SSRF chaining |
 | Deserialization | PHP/Java/Python/.NET/Node.js |
 | Auth/Logic | IDOR/Payment manipulation/Race condition/CAPTCHA flaws |
-| **🆕 Race Condition** | **TOCTOU/Concurrent bypass/Flash sale/Coupon/Inventory race** |
+| Race Condition | TOCTOU/Concurrent bypass/Flash sale/Coupon/Inventory race |
 | SSTI | Jinja2/FreeMarker/Velocity/Smarty/Twig/ERB |
 | HTTP Request Smuggling | CL.TE/TE.CL/HTTP2 downgrade |
 | Host Header Injection | Password reset poisoning/Cache poisoning/Internal scan |
@@ -124,35 +126,6 @@ Claude: ✅ Starting standard pentest →
         Step 3: Exploitation (build exploit chains A→B→C)
         Step 4: Post-exploitation (on demand)
 ```
-
----
-
-## 📝 Changelog
-
-### v1.3 (2026-06-01)
-
-**🆕 2 New Modules:**
-
-| New Module | File | Highlights |
-|-----------|------|------------|
-| Race Condition | `web-race-condition.md` | TOCTOU attacks, Turbo Intruder concurrency scripts, like/favorite flooding, coupon reuse, balance race, flash sale over-ordering, file upload TOCTOU, multi-step bypass, CAPTCHA concurrent brute-force, asyncio templates |
-| Directory Traversal | `web-dir-traversal.md` | Directory listing leaks (Apache/Nginx/IIS), path traversal detection, encoding bypass (URL/Unicode/UTF-8), extension filter bypass, CVE-2021-41773/42013, IIS semicolon truncation, automated detection scripts |
-
-**🔧 4 Enhanced Modules:**
-
-| Enhanced Module | What's New |
-|----------------|------------|
-| CORS | Subdomain XSS chaining, CORS+CSRF combo, WebSocket CORS bypass, preflight bypass, automated detection script |
-| Cache Poisoning | Varnish/Cloudflare/Fastly CDN techniques, Fat GET poisoning, cache key normalization, unkeyed cookie poisoning |
-| Host Header Injection | Django/Flask/Laravel framework poisoning, multi-domain probing, Host+SSRF internal scanning |
-| CRLF Injection | CRLF→XSS→Cookie theft full chain, header reflection chain, CRLF+SSRF combo |
-
-**📊 Stats:** Web vuln categories 17→19 | Reference files 34→36
-
-### v1.2 (2025-05-31)
-- Initial release with 17 web vulnerability categories + post-exploitation + evasion
-- 34 specialized reference files
-- AskUserQuestion arrow-key interactive selection panel
 
 ---
 
