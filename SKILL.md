@@ -1,7 +1,7 @@
 ---
 name: secskills
 description: >
-  渗透测试实战技能。覆盖信息收集、漏洞发现、漏洞利用、后渗透全流程。
+  渗透测试实战技能 v1.3。覆盖信息收集、漏洞发现 (20+ 类别)、漏洞利用、后渗透、免杀全流程。
   当用户给出具体目标 (IP/域名/URL) 且意图是攻击/利用/拿权限时触发。
   不触发: 概念讨论、蓝队防御、代码审计、CVE文档查询。
 allowed-tools: Read, Write, Bash, Grep, WebSearch, WebFetch, Glob, AskUserQuestion
@@ -138,9 +138,11 @@ argument-hint: <target_url_or_ip>
 | SSRF | `references/web-ssrf.md` | 内网探测/云元数据/Gopher |
 | 文件上传 | `references/web-upload.md` | 后缀/内容/条件竞争 |
 | 文件包含/路径遍历 | `references/web-lfi-path.md` | 伪协议/日志投毒/截断 |
+| 目录遍历/敏感文件 | `references/web-dir-traversal.md` | 路径穿越/目录列表/配置读取 |
 | XXE 注入 | `references/web-xxe.md` | 文件读取/Blind/外带DTD |
 | 反序列化 | `references/web-deser.md` | PHP/Java/Python gadget |
 | 越权/逻辑漏洞 | `references/web-auth-logic.md` | IDOR/支付/密码重置/会话 |
+| 竞争条件/并发 | `references/web-race-condition.md` | TOCTOU/并发绕过/秒杀/优惠券 |
 | SSTI 模板注入 | `references/web-ssti.md` | Jinja2/Twig/FreeMarker |
 | HTTP 请求走私 | `references/web-http-smuggling.md` | CL.TE/TE.CL/H2降级 |
 | Host 头注入 | `references/web-host-header.md` | 密码重置投毒/缓存投毒 |
@@ -192,6 +194,8 @@ argument-hint: <target_url_or_ip>
 | SSRF 元数据 | `http://169.254.169.254/` | `web-ssrf.md §3` |
 | 文件上传 PHP | `<?php @eval($_POST[1]);?>` | `web-upload.md §1` |
 | LFI 日志投毒 | UA:`<?php system('id');?>` | `web-lfi-path.md §3` |
+| 目录遍历基础 | `?file=../../../../etc/passwd` | `web-dir-traversal.md §2` |
+| 并发竞争 Turbo | `engine.openGate('race')` | `web-race-condition.md §3` |
 | SSRF→Redis RCE | Gopher 协议 | `web-ssrf.md §4` |
 | Linux SUID | `find / -perm -4000` | `post-linux-privesc.md §2` |
 | Win Token | Potato/PrintSpoofer | `post-win-privesc.md §6` |
@@ -234,4 +238,4 @@ argument-hint: <target_url_or_ip>
 
 ---
 
-*v1.2 | SecSkills | 架构: SKILL.md (L2) → references/ (L3) | 测试确认: AskUserQuestion 方向键选择*
+*v1.3 | SecSkills | 架构: SKILL.md (L2) → references/ (L3) 36个专项文件 | 测试确认: AskUserQuestion 方向键选择*

