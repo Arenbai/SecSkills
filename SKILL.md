@@ -1,7 +1,7 @@
 ---
 name: secskills
 description: >
-  渗透测试实战技能 v1.0.0。覆盖信息收集、漏洞发现 (19 类别)、漏洞利用、后渗透、免杀全流程。
+  渗透测试实战技能 v1.1.0。覆盖信息收集、漏洞发现 (19 类别)、漏洞利用、后渗透、免杀全流程。
   当用户给出具体目标 (IP/域名/URL) 且意图是攻击/利用/拿权限时触发。
   不触发: 概念讨论、蓝队防御、代码审计、CVE文档查询。
 allowed-tools: Read, Write, Bash, Grep, WebSearch, WebFetch, Glob, AskUserQuestion
@@ -238,4 +238,4 @@ argument-hint: <target_url_or_ip>
 
 ---
 
-*v1.0.0 | SecSkills | 架构: CLAUDE.md (L1) / SKILL.md (L2) → references/ (L3) 36个专项文件 | 测试确认: AskUserQuestion 方向键选择*
+*v1.1.0 | SecSkills | 架构: CLAUDE.md (L1) / SKILL.md (L2) → references/ (L3) 36个专项文件 | 测试确认: AskUserQuestion 方向键选择*
