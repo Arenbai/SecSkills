@@ -1,7 +1,10 @@
 # 反序列化漏洞实战参考
+- 反序列化 RCE 后渗透 → `post-linux-privesc.md` / `post-win-privesc.md`
+- Java 反序列化工具链 → `tools-msf.md`
 
 > 分类: PHP → Java → Python → .NET → ysoserial → 利用链 → 检测
 
+> **last_updated**: 2026-06-04 | **tested_against**: PHP 8.x, Java 17, Python 3.11, .NET 6, Node.js 20
 ---
 
 ## 1. PHP 反序列化
@@ -228,5 +231,8 @@ Step 4: 回连 / 外带
 ```
 
 ---
+## 相关参考
+- 反序列化 RCE 后渗透 → `post-linux-privesc.md` / `post-win-privesc.md`
+- Java 反序列化工具链 → `tools-msf.md`
 
 *参考: ysoserial + PHPGGC + PortSwigger Deserialization + 实战*

@@ -1,7 +1,11 @@
 # 命令执行 (RCE) 实战参考
+- WAF 环境下的命令混淆绕过 → `web-waf-bypass.md`
+- SQL 注入写 Webshell → `web-sqli.md §6`
+- 文件上传获取 Webshell → `web-upload.md`
 
 > 分类: 命令注入检测 → 无回显 → 不出网 → 反弹Shell → 常见应用RCE → 绕过
 
+> **last_updated**: 2026-06-04 | **tested_against**: Bash 5.x, PHP 8.x, Python 3.11, Java 17
 ---
 
 ## 1. 命令注入检测
@@ -301,5 +305,9 @@ $'\143\141\164' /flag                            # cat = \143\141\164
 ```
 
 ---
+## 相关参考
+- WAF 环境下的命令混淆绕过 → `web-waf-bypass.md`
+- SQL 注入写 Webshell → `web-sqli.md §6`
+- 文件上传获取 Webshell → `web-upload.md`
 
 *参考: PayloadAllTheThings + GTFO Bins + 实战案例整理*

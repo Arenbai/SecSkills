@@ -1,7 +1,10 @@
 # 子域名枚举实战参考
+- 子域名 Web 指纹识别 → `info-fingerprint.md`
+- 目录/文件爆破 → `info-dir-brute.md`
 
 > 分类: 证书透明 → DNS → 字典爆破 → 搜索引擎 → 工具链
 
+> **last_updated**: 2026-06-04 | **tested_against**: Amass 4.x, Subfinder 2.x, crt.sh, DNSRecon
 ---
 
 ## 1. 工具链速查
@@ -209,5 +212,8 @@ cat subs_http.txt
 ```
 
 ---
+## 相关参考
+- 子域名 Web 指纹识别 → `info-fingerprint.md`
+- 目录/文件爆破 → `info-dir-brute.md`
 
 *参考: Subfinder + Amass + Assetfinder + 实战*

@@ -1,7 +1,10 @@
 # Windows 提权实战参考
+- 提权后凭据获取 → `post-credentials.md`
+- 域渗透横向移动 → `post-ad.md`
 
 > 流程: whoami→信息收集→自动审计→服务→计划任务→权限配置→AlwaysInstall→UAC绕过→内核
 
+> **last_updated**: 2026-06-04 | **tested_against**: Windows Server 2019/2022, PrintSpoofer, Potato系列
 ---
 
 ## 1. 初始枚举 (第一时间)
@@ -269,5 +272,8 @@ icacls C:\Windows\System32\config\SAM
 ```
 
 ---
+## 相关参考
+- 提权后凭据获取 → `post-credentials.md`
+- 域渗透横向移动 → `post-ad.md`
 
 *参考: WinPEAS + PayloadAllTheThings + HackTricks + 实战*

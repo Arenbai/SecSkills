@@ -2,6 +2,7 @@
 
 > 阶段分离: [攻击] 搜索引擎/Shodan/FOFA/Whois/邮箱 → [利用] 目标画像/凭证泄露/社会工程
 
+> **last_updated**: 2026-06-04 | **tested_against**: Shodan, Censys, FOFA, Google Dorking, theHarvester
 ---
 
 # 攻击阶段 — 被动信息收集

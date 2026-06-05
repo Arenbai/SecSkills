@@ -44,6 +44,8 @@ Claude presents an **arrow-key selection panel** (↑↓ to navigate, Enter to c
 
 > 💡 **Standalone Prompt**: The `CLAUDE.md` file in the repo root is a self-contained prompt. If you don't want to install the full Skill, just copy it to `~/.claude/CLAUDE.md` and Claude Code will load it automatically — you still get the full pentest capability.
 
+> ⚠️ **Language Note**: The Skill content (SKILL.md and all references/) is written in Chinese. The interactive prompts and vulnerability knowledge base are Chinese-only. This English README is for project overview and installation only.
+
 ---
 
 ## 📋 Architecture

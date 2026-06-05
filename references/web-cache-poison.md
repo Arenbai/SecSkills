@@ -1,7 +1,10 @@
 # Web Cache Poisoning (缓存投毒) 实战参考
+- HTTP 请求走私配合投毒 → `web-http-smuggling.md`
+- Host 头注入投毒 → `web-host-header.md`
 
 > 阶段分离: [攻击] 检测缓存行为+未键化头部 → [利用] 投毒XSS/重定向/拒绝服务
 
+> **last_updated**: 2026-06-04 | **tested_against**: Varnish, Cloudflare, Akamai, Fastly, CloudFront
 ---
 
 # 攻击阶段 — 检测与识别
@@ -181,5 +184,8 @@ curl -b "unkeyed_cookie=<script>alert(1)</script>" "https://target.com/page"
 ```
 
 ---
+## 相关参考
+- HTTP 请求走私配合投毒 → `web-http-smuggling.md`
+- Host 头注入投毒 → `web-host-header.md`
 
 *参考: PortSwigger Web Cache Poisoning + CWE-525 + 实战案例*

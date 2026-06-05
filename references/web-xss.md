@@ -1,7 +1,10 @@
 # XSS 跨站脚本实战参考
+- CORS 配置错误可组合窃取数据 → `web-cors.md`
+- WAF 绕过 Payload 编码 → `web-waf-bypass.md`
 
 > 分类: 检测 → 反射型 → 存储型 → DOM型 → Cookie窃取 → BeEF → WAF绕过 → CSP绕过
 
+> **last_updated**: 2026-06-04 | **tested_against**: Chrome 120+, Firefox 120+, CSP Level 3
 ---
 
 ## 1. 快速检测
@@ -284,5 +287,8 @@ curl -I https://target.com | grep -i content-security-policy
 ```
 
 ---
+## 相关参考
+- CORS 配置错误可组合窃取数据 → `web-cors.md`
+- WAF 绕过 Payload 编码 → `web-waf-bypass.md`
 
 *参考: OWASP XSS Cheat Sheet + PortSwigger XSS + PayloadAllTheThings*

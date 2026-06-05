@@ -1,7 +1,11 @@
 # WAF/IDS 绕过实战参考
+- SQL 注入 WAF 绕过 → `web-sqli.md`
+- XSS WAF 绕过 → `web-xss.md`
+- RCE WAF 绕过 → `web-rce.md`
 
 > 分类: 编码层 → 协议层 → 语义层 → HTTP参数污染 → 分块传输 → 大小写/注释 → 流量伪装
 
+> **last_updated**: 2026-06-04 | **tested_against**: ModSecurity, Cloudflare WAF, AWS WAF, Imperva
 ---
 
 ## 1. 绕过层次总览
@@ -389,5 +393,9 @@ Step 4: 逐层尝试:
 ```
 
 ---
+## 相关参考
+- SQL 注入 WAF 绕过 → `web-sqli.md`
+- XSS WAF 绕过 → `web-xss.md`
+- RCE WAF 绕过 → `web-rce.md`
 
 *参考: OWASP WAF Bypass + 实战经验 + PayloadAllTheThings*

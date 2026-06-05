@@ -1,7 +1,11 @@
 # 凭据窃取与密码攻击实战参考
+- Linux 提权路径 → `post-linux-privesc.md`
+- Windows 提权路径 → `post-win-privesc.md`
+- 域渗透攻击链 → `post-ad.md`
 
 > 覆盖: Windows凭据 → Linux凭据 → 内存dump → Hash破解 → 横向Pass-the-Hash → 工具速查
 
+> **last_updated**: 2026-06-04 | **tested_against**: Mimikatz 2.2, Impacket 0.10, LaZagne, DPAPI
 ---
 
 ## 1. Windows 凭据窃取
@@ -343,5 +347,9 @@ secretsdump.py domain.com/Administrator@DC.domain.com -hashes :hash
 | John | Linux | CPU Hash破解 |
 
 ---
+## 相关参考
+- Linux 提权路径 → `post-linux-privesc.md`
+- Windows 提权路径 → `post-win-privesc.md`
+- 域渗透攻击链 → `post-ad.md`
 
 *参考: Mimikatz + Impacket + HackTricks + 实战案例*

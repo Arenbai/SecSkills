@@ -1,8 +1,10 @@
 # 目录遍历 (Directory Traversal) 实战参考
+- 文件包含 (LFI/RFI) 进阶利用 → `web-lfi-path.md`
 
 > 阶段分离: [攻击] 路径穿越检测+编码绕过 → [利用] 敏感文件读取/源码泄露/配置窃取
 > 覆盖: 目录列表泄露 → 路径规范化绕过 → 编码绕过 → 绝对/相对路径穿越 → 各Web服务器特性
 
+> **last_updated**: 2026-06-04 | **tested_against**: Apache 2.4, Nginx 1.24, IIS 10, Python Flask
 ---
 
 # 攻击阶段 — 检测与识别
@@ -544,5 +546,7 @@ curl -s "https://target.com/download?file=../../app.dll" | xxd | head -20
 | 目录遍历 → LFI | 读到的源码含file inclusion | RCE |
 
 ---
+## 相关参考
+- 文件包含 (LFI/RFI) 进阶利用 → `web-lfi-path.md`
 
 *参考: OWASP Path Traversal + CWE-22/23/35/36 + 实战案例 + PayloadAllTheThings*

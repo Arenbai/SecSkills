@@ -1,7 +1,10 @@
 # 域渗透实战参考
+- 凭据获取技巧 → `post-credentials.md`
+- Windows 提权 → `post-win-privesc.md`
 
 > 覆盖: 域信息收集 → BloodHound → Kerberoasting → AS-REP Roasting → DCSync → Golden/Silver Ticket → 跨域
 
+> **last_updated**: 2026-06-04 | **tested_against**: Windows Server 2019 AD, Rubeus, BloodHound, Impacket
 ---
 
 ## 1. 域信息收集
@@ -282,5 +285,8 @@ crackmapexec smb 192.168.1.0/24 -u Administrator -H 'HASH' --sam
 ```
 
 ---
+## 相关参考
+- 凭据获取技巧 → `post-credentials.md`
+- Windows 提权 → `post-win-privesc.md`
 
 *参考: BloodHound + Impacket + HackTricks AD + 实战*

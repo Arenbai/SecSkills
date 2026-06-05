@@ -2,6 +2,7 @@
 
 > 安装: `pip install impacket` 或 `git clone https://github.com/fortra/impacket`
 
+> **last_updated**: 2026-06-04 | **tested_against**: Impacket 0.10
 ---
 
 ## 信息收集

@@ -1,7 +1,10 @@
 # Linux 提权实战参考
+- 提权后凭据获取 → `post-credentials.md`
+- 域渗透横向移动 → `post-ad.md`
 
 > 流程: 信息收集 → 自动审计 → SUID → Sudo → Cron → 内核 → 密码/密钥 → Capabilities → 服务
 
+> **last_updated**: 2026-06-04 | **tested_against**: Linux 5.x/6.x, Ubuntu 22.04, CentOS 8, GTFOBins
 ---
 
 ## 1. 拿到 Shell 后第一步 — 信息收集
@@ -339,5 +342,8 @@ docker -H unix:///var/run/docker.sock run -v /:/host -it alpine chroot /host /bi
 ```
 
 ---
+## 相关参考
+- 提权后凭据获取 → `post-credentials.md`
+- 域渗透横向移动 → `post-ad.md`
 
 *参考: GTFObins + HackTricks + PayloadAllTheThings + 实战案例*

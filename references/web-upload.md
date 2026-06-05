@@ -1,7 +1,10 @@
 # 文件上传漏洞实战参考
+- 上传 Webshell 后的命令执行 → `web-rce.md`
+- WAF 绕过上传 Payload → `web-waf-bypass.md`
 
 > 分类: 检测 → 后缀绕过 → 内容绕过 → 条件竞争 → 图片马 → 解析漏洞 → 客户端绕过 → WAF绕过
 
+> **last_updated**: 2026-06-04 | **tested_against**: Apache 2.4, Nginx 1.24, PHP 8.x, IIS 10
 ---
 
 ## 1. 快速检测
@@ -303,5 +306,8 @@ Content-Type: application/x-www-form-urlencoded
 ```
 
 ---
+## 相关参考
+- 上传 Webshell 后的命令执行 → `web-rce.md`
+- WAF 绕过上传 Payload → `web-waf-bypass.md`
 
 *参考: OWASP File Upload + 实战案例 + PayloadAllTheThings*

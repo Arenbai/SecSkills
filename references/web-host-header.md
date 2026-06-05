@@ -1,7 +1,10 @@
 # Host 头注入实战参考
+- 缓存投毒配合 Host 头 → `web-cache-poison.md`
+- CRLF 注入可操控响应头 → `web-crlf.md`
 
 > 阶段分离: [攻击] 检测Host头可控性 → [利用] 密码重置投毒/缓存投毒/绕过ACL/SSRF
 
+> **last_updated**: 2026-06-04 | **tested_against**: Apache 2.4, Nginx 1.24, PHP 8.x
 ---
 
 # 攻击阶段 — 检测
@@ -180,5 +183,8 @@ curl -H "Host: whitelist-allowed.com" "https://target.com/admin"
 ```
 
 ---
+## 相关参考
+- 缓存投毒配合 Host 头 → `web-cache-poison.md`
+- CRLF 注入可操控响应头 → `web-crlf.md`
 
 *参考: PortSwigger Host Header + CWE-601 + 实战案例*

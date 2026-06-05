@@ -1,8 +1,10 @@
 # 竞争条件 (Race Condition) 实战参考
+- 越权/逻辑漏洞组合利用 → `web-auth-logic.md`
 
 > 阶段分离: [攻击] 检测竞争窗口 → [利用] TOCTOU/并发绕过/库存负数/多步逻辑破坏
 > 覆盖: 点赞收藏并发 → 优惠券重复领取 → 余额竞争 → 文件上传竞争 → 多步流程绕过
 
+> **last_updated**: 2026-06-04 | **tested_against**: Linux 5.x, Python 3.11, Burp Turbo Intruder
 ---
 
 # 攻击阶段 — 检测与识别
@@ -532,5 +534,7 @@ done
 ```
 
 ---
+## 相关参考
+- 越权/逻辑漏洞组合利用 → `web-auth-logic.md`
 
 *参考: PortSwigger Race Conditions + OWASP Race Condition + 实战案例 + CWE-362/367*

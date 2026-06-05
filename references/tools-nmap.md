@@ -1,5 +1,6 @@
 # Nmap 速查手册
 
+> **last_updated**: 2026-06-04 | **tested_against**: Nmap 7.94
 ---
 
 ## 扫描类型

@@ -1,7 +1,10 @@
 # XXE 注入实战参考
+- XXE 可触发 SSRF 探测内网 → `web-ssrf.md`
+- XXE 与反序列化组合利用 → `web-deser.md`
 
 > 分类: 文件读取 → SSRF → Blind XXE → 参数实体 → XInclude → 文件上传 → SOAP
 
+> **last_updated**: 2026-06-04 | **tested_against**: Java 17, PHP 8.x, .NET 6, libxml2 2.9+
 ---
 
 ## 1. XXE 基础检测
@@ -248,5 +251,8 @@ dict://127.0.0.1:11211/stat
 ```
 
 ---
+## 相关参考
+- XXE 可触发 SSRF 探测内网 → `web-ssrf.md`
+- XXE 与反序列化组合利用 → `web-deser.md`
 
 *参考: OWASP XXE + PayloadAllTheThings XXE + PortSwigger XXE*

@@ -1,7 +1,10 @@
 # HTTP 请求走私 (Request Smuggling) 实战参考
+- 请求走私可实现缓存投毒 → `web-cache-poison.md`
+- WAF 协议层绕过 → `web-waf-bypass.md`
 
 > 阶段分离: [攻击] CL/TE 检测与识别 → [利用] 缓存投毒/绕过WAF/劫持会话
 
+> **last_updated**: 2026-06-04 | **tested_against**: Apache 2.4, Nginx 1.24, HAProxy 2.6, HTTP/2
 ---
 
 # 攻击阶段 — 检测与识别
@@ -113,5 +116,8 @@ X-Ignore: X
 ```
 
 ---
+## 相关参考
+- 请求走私可实现缓存投毒 → `web-cache-poison.md`
+- WAF 协议层绕过 → `web-waf-bypass.md`
 
 *参考: PortSwigger HTTP Request Smuggling + 实战案例*

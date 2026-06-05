@@ -1,7 +1,10 @@
 # SSTI 模板注入实战参考
+- 模板注入 RCE 后渗透 → `post-linux-privesc.md` / `post-win-privesc.md`
+- WAF 绕过 Payload 编码 → `web-waf-bypass.md`
 
 > 分类: 检测 → Jinja2 → Twig → FreeMarker → Velocity → Smarty → Jade → 沙箱绕过
 
+> **last_updated**: 2026-06-04 | **tested_against**: Jinja2, Twig, FreeMarker, Velocity, Smarty, ERB
 ---
 
 ## 1. SSTI 检测
@@ -215,5 +218,8 @@ $exec.waitFor()
 ```
 
 ---
+## 相关参考
+- 模板注入 RCE 后渗透 → `post-linux-privesc.md` / `post-win-privesc.md`
+- WAF 绕过 Payload 编码 → `web-waf-bypass.md`
 
 *参考: PayloadAllTheThings SSTI + HackTricks SSTI + PortSwigger SSTI*

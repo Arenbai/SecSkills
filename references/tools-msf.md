@@ -1,5 +1,6 @@
 # Metasploit 速查手册
 
+> **last_updated**: 2026-06-04 | **tested_against**: Metasploit 6.x
 ---
 
 ## 基础命令

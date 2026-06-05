@@ -2,6 +2,7 @@
 
 > 阶段分离: [攻击] 检测CRLF注入点 → [利用] HTTP响应头注入/Set-Cookie注入/XSS/SSRF
 
+> **last_updated**: 2026-06-04 | **tested_against**: Apache 2.4, Nginx 1.24, HTTP/1.1
 ---
 
 # 攻击阶段 — 检测

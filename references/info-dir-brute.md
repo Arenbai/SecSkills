@@ -1,7 +1,10 @@
 # 目录/文件爆破实战参考
+- 目录爆破工具 → `tools-fuzz.md`
+- Web 指纹识别 → `info-fingerprint.md`
 
 > 阶段分离: [攻击] 字典生成+爆破策略 → [利用] 发现敏感文件/备份/管理后台
 
+> **last_updated**: 2026-06-04 | **tested_against**: Gobuster 3.6, ffuf 2.x, Feroxbuster 2.x, Dirsearch
 ---
 
 # 攻击阶段 — 字典与策略
@@ -118,5 +121,8 @@ phpinfo.php / info.php / test.php
 ```
 
 ---
+## 相关参考
+- 目录爆破工具 → `tools-fuzz.md`
+- Web 指纹识别 → `info-fingerprint.md`
 
 *参考: SecLists + OWASP Directory Traversal + 实战*

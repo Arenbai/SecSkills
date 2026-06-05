@@ -2,6 +2,7 @@
 
 > 阶段分离: [攻击] 内省查询+信息收集 → [利用] 注入/越权/DoS/批量查询
 
+> **last_updated**: 2026-06-04 | **tested_against**: Apollo Server, Hasura, GraphQL-JS
 ---
 
 # 攻击阶段 — 检测与信息收集

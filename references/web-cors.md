@@ -1,7 +1,9 @@
 # CORS 跨域配置错误实战参考
+- CORS 错误配置配合 XSS → `web-xss.md`
 
 > 阶段分离: [攻击] 检测CORS配置 → [利用] 窃取敏感数据/CSRF增强
 
+> **last_updated**: 2026-06-04 | **tested_against**: Chrome 120+, Fetch API, XMLHttpRequest
 ---
 
 # 攻击阶段 — 检测
@@ -209,5 +211,7 @@ done
 ```
 
 ---
+## 相关参考
+- CORS 错误配置配合 XSS → `web-xss.md`
 
 *参考: OWASP CORS + PortSwigger CORS + CWE-942 + 实战案例*

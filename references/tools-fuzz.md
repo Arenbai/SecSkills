@@ -1,5 +1,6 @@
 # 模糊测试与爆破工具速查
 
+> **last_updated**: 2026-06-04 | **tested_against**: Gobuster 3.6, ffuf 2.x, Feroxbuster 2.x
 ---
 
 ## Gobuster

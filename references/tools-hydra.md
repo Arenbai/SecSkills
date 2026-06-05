@@ -1,5 +1,6 @@
 # Hydra 速查手册
 
+> **last_updated**: 2026-06-04 | **tested_against**: Hydra 9.x
 ---
 
 ## 基础语法

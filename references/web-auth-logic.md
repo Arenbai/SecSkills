@@ -1,7 +1,9 @@
 # 越权与逻辑漏洞实战参考
+- 竞争条件绕过业务逻辑 → `web-race-condition.md`
 
 > 分类: IDOR → 垂直越权 → 水平越权 → 支付逻辑 → 密码重置 → 会话管理 → API鉴权
 
+> **last_updated**: 2026-06-04 | **tested_against**: JWT, OAuth 2.0, Session, REST API
 ---
 
 ## 1. IDOR (不安全的直接对象引用)
@@ -316,5 +318,7 @@ POST /api/register HTTP/1.1
 ```
 
 ---
+## 相关参考
+- 竞争条件绕过业务逻辑 → `web-race-condition.md`
 
 *参考: OWASP IDOR + PortSwigger Access Control + 实战案例*

@@ -1,7 +1,9 @@
 # 密码爆破实战参考
+- 密码爆破工具 → `tools-hydra.md`
 
 > 覆盖: Hydra → Medusa → Hashcat → 字典制作 → 协议速查 → 密码喷洒
 
+> **last_updated**: 2026-06-04 | **tested_against**: Hydra 9.x, Medusa, Ncrack, Patator
 ---
 
 ## 1. Hydra 速查
@@ -191,5 +193,7 @@ hydra ... -t 1 -w 10 ...
 ```
 
 ---
+## 相关参考
+- 密码爆破工具 → `tools-hydra.md`
 
 *参考: Hydra + CrackMapExec + 实战经验*
