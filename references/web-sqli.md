@@ -198,7 +198,7 @@ sqlmap -u "http://target.com/page.php?id=1" --level=5 --risk=3 --batch
 
 ## 5. 堆叠注入 (多语句执行)
 
-> 堆叠注入的核心验证目标是**确认多语句执行能力**，用无害语句验证即可。破坏性操作（DROP/INSERT/xp_cmdshell）在实际渗透中通过 §6 读写文件实现。
+> 堆叠注入的核心验证目标是**确认多语句执行能力**，只用无害语句验证（SELECT/延时/版本探测）。严禁任何修改或删除数据的写操作。
 
 ```sql
 # MySQL (需 PHP MySQLi multi_query / Python pymysql)

