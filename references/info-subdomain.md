@@ -212,6 +212,31 @@ cat subs_http.txt
 ```
 
 ---
+
+## 8. 子域名接管 (Subdomain Takeover)
+
+> 原理: CNAME 指向已释放的第三方服务（GitHub Pages/Heroku/S3/OSS 等）→ 攻击者注册同名资源即可接管该子域名。
+> 价值: 钓鱼/窃取主域 Cookie（作用域为父域时）/ 绕过 CSP — 接管成功且有实际影响按 🟡中危 起步报告。
+
+```bash
+# === 检测流程 ===
+# 1. 收集所有子域名的 CNAME 记录
+dnsx -l subs.txt -cname -resp -o cnames.txt
+
+# 2. 匹配悬空指纹 — 自动化工具
+subzy run --targets subs_alive.txt          # 快速
+nuclei -l subs_alive.txt -tags takeover     # 模板化
+
+# 3. 人工确认（必须）: 访问子域名看服务商的错误页特征
+# GitHub Pages → "There isn't a GitHub Pages site here"
+# S3/OSS      → NoSuchBucket
+# Heroku      → "No such app"
+# Azure       → "404 Web Site not found"
+```
+
+> ⚠️ 工具告警必须人工访问确认；仅在能注册接管（或明确展示服务商已释放）时报告，"可能可接管"不报。
+
+---
 ## 相关参考
 - 子域名 Web 指纹识别 → `info-fingerprint.md`
 - 目录/文件爆破 → `info-dir-brute.md`

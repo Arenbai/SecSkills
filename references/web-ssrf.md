@@ -1,7 +1,6 @@
 # SSRF 服务端请求伪造实战参考
 - SSRF→Redis RCE 链式利用 → `web-rce.md`
 - XXE 可触发 SSRF → `web-xxe.md`
-- 目录爆破发现内部服务 → `tools-fuzz.md`
 
 > 分类: 检测 → 内网探测 → 云元数据 → Gopher协议 → 绕过 → SSRF→RCE
 
@@ -280,6 +279,5 @@ GET /redirect HTTP/1.1
 ## 相关参考
 - SSRF→Redis RCE 链式利用 → `web-rce.md`
 - XXE 可触发 SSRF → `web-xxe.md`
-- 目录爆破发现内部服务 → `tools-fuzz.md`
 
 *参考: OWASP SSRF + PayloadAllTheThings + 实战案例*

