@@ -1,5 +1,4 @@
 # 端口扫描与服务识别实战参考
-- Nmap 高级用法 → `tools-nmap.md`
 - Web 指纹识别 → `info-fingerprint.md`
 
 > 覆盖: Nmap 核心参数 → 特殊扫描 → 防火墙规避 → 服务识别 → 脚本扫描 → 快速扫描
@@ -251,7 +250,6 @@ for host in tree.findall('.//host'):
 
 ---
 ## 相关参考
-- Nmap 高级用法 → `tools-nmap.md`
 - Web 指纹识别 → `info-fingerprint.md`
 
 *参考: Nmap 官方文档 + 实战经验整理*

